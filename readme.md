@@ -53,4 +53,44 @@ console.log(e.toJSON())
 // logs {name, code, message, stack}
 ```
 
+Extend by `require`ing error directly:
+
+```javascript
+var Err = require('@smallwins/err/error')
+
+class TerribleError extends Err {
+  constructor(msg) {
+    super(msg)
+    this.extra = 'extra info'
+  }
+}
+
+var e = new TerribleError('wut')
+console.log(e.extra)
+```
+
+Work oldschool without `new`:
+
+```javascript
+var err = require('@smallwins/err/oldschool')
+
+console.log(err.Error('basic') instanceof Error)
+// logs true
+
+console.log(err.NotFound('not found err').toString())
+// logs NotFound: not found err
+```
+
+### `@smallwins/err/oldschool` API
+
+Factory functions which return real `Error` instances:
+
+- `err.Error`
+- `err.Internal`
+- `err.Database`
+- `err.NotFound`
+- `err.NotAuthorized`
+
+---
+
 Runtime type checking fully supported. Check the tests.
