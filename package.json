@@ -1,13 +1,13 @@
 {
   "name": "@smallwins/err",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Slightly better custom Error",
   "main": "index.js",
   "scripts": {
     "test": "node test | tap-spec"
   },
   "repository": {
-    "type" : "git",
+    "type": "git",
     "url": "https://github.com/smallwins/err"
   },
   "keywords": [
