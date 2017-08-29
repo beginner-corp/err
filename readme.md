@@ -1,11 +1,11 @@
-# @smallwins/err
+# `@smallwins/err`
 
 Slightly better custom `Error`s
 
 - Same runtime interface: just pass a message to the constructor
 - Respects `extends` with clean `name` and `stack` properties
-- `toJSON` returns a JSON representation
-- Adds common HTTP error types with a `code` property
+- Adds `toObject` returns a plain object representation
+- Bundles common HTTP error types with a `code` property
 
 ```bash
 npm i @smallwins/err --save
@@ -13,11 +13,11 @@ npm i @smallwins/err --save
 
 ### Bundled Error Types
 
-- `err.BaseError`
-- `err.InternalError`
-- `err.DatabaseError`
-- `err.NotFoundError`
-- `err.NotAuthorizedError`
+- `err.Err` a base `Error` type intended for extending
+- `err.InternalError` has a `code` property of `500`
+- `err.DatabaseError` has a `code` property of `500`
+- `err.NotFoundError` has a `code` property of `404`
+- `err.NotAuthorizedError` has a `code` property of `403`
 
 ## Usage
 
@@ -35,7 +35,7 @@ Subclass to add additional properties such as `code`:
 ```javascript
 var err = require('@smallwins/err')
 
-class CoffeeError extends err.BaseErr {
+class CoffeeError extends err.Err {
   constructor(params) {
     super(params)
     this.code = 500
@@ -46,17 +46,17 @@ let e = new CoffeeError('lactose intolerant')
 console.log(e.code) // logs 500
 ```
 
-Get a clean JSON representation:
+Get a clean representation:
 
 ```javascript
-console.log(e.toJSON())
+console.log(e.toObject())
 // logs {name, code, message, stack}
 ```
 
 Extend by `require`ing error directly:
 
 ```javascript
-var Err = require('@smallwins/err/error')
+var Err = require('@smallwins/err/err')
 
 class TerribleError extends Err {
   constructor(msg) {
@@ -85,11 +85,11 @@ console.log(err.NotFound('not found err').toString())
 
 Factory functions which return real `Error` instances:
 
-- `err.Error`
-- `err.Internal`
-- `err.Database`
-- `err.NotFound`
-- `err.NotAuthorized`
+- `err.Error` returns an `Err` instance
+- `err.Internal` returns an `InternalError` instance
+- `err.Database` returns a `DatabaseError` instance
+- `err.NotFound` returns a `NotFoundError` instance
+- `err.NotAuthorized` returns a `NotAuthorizedError` instance
 
 ---
 

@@ -1,7 +1,7 @@
 var serialize = require('serialize-error')
 var clean = require('clean-stack')
 
-class BaseError extends Error {
+class Err extends Error {
 
   constructor(msg) {
     super(msg)
@@ -16,7 +16,7 @@ class BaseError extends Error {
     }
   }
 
-  toJSON() {
+  toObject() {
     return serialize(this)
   }
 
@@ -25,4 +25,4 @@ class BaseError extends Error {
   }
 }
 
-module.exports = BaseError
+module.exports = Err

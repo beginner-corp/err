@@ -1,8 +1,8 @@
 var err = require('.')
 
 module.exports = {
-  Error(msg) {
-    return new err.BaseError(msg)
+  Err(msg) {
+    return new err.Err(msg)
   },
   Internal(msg) {
     return new err.InternalError(msg)

@@ -15,7 +15,7 @@ test('instanceof works', t=> {
   t.plan(4)
   var boom = new err.InternalError('halp')
   t.ok(boom instanceof Error, 'is an Error')
-  t.ok(boom instanceof err.BaseError, 'is a BaseError')
+  t.ok(boom instanceof err.Err, 'is a Err')
   t.ok(boom instanceof err.InternalError, 'is an InternalError')
   t.ok(boom.code === 500, 'boom.code is 500')
   console.log(boom)
@@ -24,10 +24,10 @@ test('instanceof works', t=> {
 /**
  * very common use case is casting errors back to the client in JSON
  */
-test('toJSON', t=> {
+test('toObject', t=> {
   t.plan(1)
   var boom = new err.InternalError('halp')
-  var b = boom.toJSON()
+  var b = boom.toObject()
   t.ok(b.name === 'InternalError', 'name property serialized')
   console.log(b)
 })
@@ -53,7 +53,7 @@ test('toString', t=> {
 test('http friendly helpers', t=> {
   t.plan(5)
 
-  var wtf = new err.BaseError('base err')
+  var wtf = new err.Err('base err')
   var fail = new err.InternalError('internal "server" err')
   var db = new err.DatabaseError('db err')
   var notFound = new err.NotFoundError('did not find')

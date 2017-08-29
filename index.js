@@ -1,6 +1,6 @@
-var BaseError = require('./error')
+var Err = require('./err')
 
-module.exports.BaseError = BaseError
+module.exports.Err = Err
 
 var errors = [
   {name: 'InternalError', code: 500},
@@ -12,7 +12,7 @@ var errors = [
 errors.forEach(err=> {
   var {name, code} = err
   eval(`
-    class ${name} extends BaseError {
+    class ${name} extends Err {
       constructor(msg) {
         super(msg)
         this.code = ${code}
