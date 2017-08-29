@@ -1,12 +1,15 @@
 {
   "name": "@smallwins/err",
   "version": "2.0.1",
-  "description": "",
+  "description": "Slightly better custom Error",
   "main": "index.js",
   "scripts": {
     "test": "node test | tap-spec"
   },
-  "keywords": [],
+  "repository": {
+    "git": "https://github.com/smallwins/err"
+  },
+  "keywords": ["error", "custom"],
   "author": "Brian LeRoux <b@brian.io>",
   "license": "Apache-2.0",
   "devDependencies": {
