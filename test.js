@@ -1,5 +1,6 @@
 var test = require('tape')
 var err = require('.')
+var old = require('./oldschool')
 
 test('env', t=> {
   t.plan(1)
@@ -73,4 +74,18 @@ test('http friendly helpers', t=> {
 
   t.ok(notAllowed.code === 403, 'not allowed is 403')
   console.log(notAllowed)
+})
+
+/**
+ * if you are accustomed to  callback(Error('wtf')) style
+ * this syntax might appeal to you
+ */
+test('oldschool factory methods', t=> {
+  t.plan(5)
+  var err = old
+  t.ok(err.Err('wtf') instanceof Error, 'Err is an Error')
+  t.ok(err.Internal('wtf') instanceof Error, 'Internal is an Error')
+  t.ok(err.Database('wtf') instanceof Error, 'Database is an Error')
+  t.ok(err.NotFound('wtf') instanceof Error, 'NotFound is an Error')
+  t.ok(err.NotAuthorized('wtf') instanceof Error, 'NotAuthorized is an Error')
 })
