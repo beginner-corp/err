@@ -7,7 +7,8 @@
     "test": "node test | tap-spec"
   },
   "repository": {
-    "git": "https://github.com/smallwins/err"
+    "type" : "git",
+    "url": "https://github.com/smallwins/err"
   },
   "keywords": [
     "error",
