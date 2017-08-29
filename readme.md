@@ -74,7 +74,7 @@ Work oldschool without `new`:
 ```javascript
 var err = require('@smallwins/err/oldschool')
 
-console.log(err.Error('basic') instanceof Error)
+console.log(err.Err('basic') instanceof Error)
 // logs true
 
 console.log(err.NotFound('not found err').toString())
@@ -85,7 +85,7 @@ console.log(err.NotFound('not found err').toString())
 
 Factory functions which return real `Error` instances:
 
-- `err.Error` returns an `Err` instance
+- `err.Err` returns an `Err` instance
 - `err.Internal` returns an `InternalError` instance
 - `err.Database` returns a `DatabaseError` instance
 - `err.NotFound` returns a `NotFoundError` instance
